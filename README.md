@@ -1,3 +1,3 @@
 # accounts
 
-Demo repo with Jenkins
+Demo repo with Jenkins CICD
