@@ -515,7 +515,7 @@
 					"script": {
 						"id": "93d8ef82-1a40-46bf-a515-f99b93e8a385",
 						"exec": [
-							"c"
+							""
 						],
 						"type": "text/javascript"
 					}
