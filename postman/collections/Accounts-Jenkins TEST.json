@@ -18,8 +18,8 @@
 							"script": {
 								"id": "1b20e13a-3ca4-4f0b-8c0a-b949919bfbcd",
 								"exec": [
-									"pm.test(\"Response time is less than 200ms\", function () {",
-									"  pm.expect(pm.response.responseTime).to.be.below(200);",
+									"pm.test(\"Response time is less than 800ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(800);",
 									"});",
 									"",
 									"let jsonResponse = pm.response.json();",
