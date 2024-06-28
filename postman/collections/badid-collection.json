@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d81e732d-9eb4-4f96-bbe0-44e9c17a894b",
+		"_postman_id": "d81e732d-9eb4-4f96-bbe0-44e9c17a894x",
 		"name": "Accounts-Jenkins TEST",
 		"description": "Endpoints for frontend implementations when it comes to the account space.\n\nResponses can be visualized to give a clearer picture on what responses provide.\n\nMake sure to select the respective Environment file when making calls for the Collection  \n\n<img src=\"https://i.imgur.com/ymcwlzB.gif\" alt=\"Imgur\">\n\nReference image example here:  \n\n<img src=\"https://i.imgur.com/WbEHxDz.jpg\" alt=\"Imgur\">\n\n  \nand example of Date  \n\n<img src=\"https://i.imgur.com/zQq3VNF.jpg\" alt=\"Imgur\">",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
