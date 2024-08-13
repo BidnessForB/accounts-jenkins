@@ -12,6 +12,94 @@
 			"item": [
 				{
 					"name": "Latest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e477bf4-338c-410c-b31d-139e41d16bfe",
+								"exec": [
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"let jsonResponse = pm.response.json();",
+									"",
+									"pm.test(\"Response should be a parsable JSON\", function() {",
+									"    pm.expect(jsonResponse).to.be.ok;",
+									"});",
+									"",
+									"pm.test(\"Response body should be an object\", function() {",
+									"    pm.expect(jsonResponse).to.be.an('object');",
+									"});",
+									"",
+									"",
+									"",
+									"var schema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"period\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"from\": {",
+									"          \"type\": \"string\"",
+									"        },",
+									"        \"to\": {",
+									"          \"type\": \"string\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"from\",",
+									"        \"to\"",
+									"      ]",
+									"    },",
+									"    \"balance\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"opening\": {",
+									"          \"type\": \"number\"",
+									"        },",
+									"        \"closing\": {",
+									"          \"type\": \"number\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"opening\",",
+									"        \"closing\"",
+									"      ]",
+									"    },",
+									"    \"money\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"in\": {",
+									"          \"type\": \"number\"",
+									"        },",
+									"        \"out\": {",
+									"          \"type\": \"number\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"in\",",
+									"        \"out\"",
+									"      ]",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"period\",",
+									"    \"balance\",",
+									"    \"money\"",
+									"  ]",
+									"}",
+									"",
+									"/*pm.test(\"Response body should be in the correct format\", function() {",
+									"  pm.response.to.have.jsonSchema (schema);",
+									"});*/",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "b8e76484-62a1-4662-b64a-9bd745a61ab3",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -84,6 +172,94 @@
 				},
 				{
 					"name": "Date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a48c8954-c096-4a70-855c-237f2ff1be39",
+								"exec": [
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"let jsonResponse = pm.response.json();",
+									"",
+									"pm.test(\"Response should be a parsable JSON\", function() {",
+									"    pm.expect(jsonResponse).to.be.ok;",
+									"});",
+									"",
+									"pm.test(\"Response body should be an object\", function() {",
+									"    pm.expect(jsonResponse).to.be.an('object');",
+									"});",
+									"",
+									"",
+									"",
+									"var schema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"period\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"from\": {",
+									"          \"type\": \"string\"",
+									"        },",
+									"        \"to\": {",
+									"          \"type\": \"string\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"from\",",
+									"        \"to\"",
+									"      ]",
+									"    },",
+									"    \"balance\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"opening\": {",
+									"          \"type\": \"number\"",
+									"        },",
+									"        \"closing\": {",
+									"          \"type\": \"number\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"opening\",",
+									"        \"closing\"",
+									"      ]",
+									"    },",
+									"    \"money\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"in\": {",
+									"          \"type\": \"number\"",
+									"        },",
+									"        \"out\": {",
+									"          \"type\": \"number\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"in\",",
+									"        \"out\"",
+									"      ]",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"period\",",
+									"    \"balance\",",
+									"    \"money\"",
+									"  ]",
+									"}",
+									"",
+									"/*pm.test(\"Response body should be in the correct format\", function() {",
+									"  pm.response.to.have.jsonSchema (schema);",
+									"});*/",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "3e6d13b5-c12f-4a0e-861a-284bc1f7346b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -310,6 +486,21 @@
 		},
 		{
 			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "46d5fbab-ba09-4edd-a2d5-b4d7dd05ceae",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"id": "e9e2f861-0866-41b5-88b3-bc2214c6135c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -406,6 +597,21 @@
 		},
 		{
 			"name": "Overview",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "04ac6ef0-33c6-4a96-a677-062b9bf7693e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"id": "c213af30-93ec-4baf-a30a-dcf21a56fd62",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -476,6 +682,21 @@
 		},
 		{
 			"name": "Delete account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f022aa1e-6cd3-4695-9470-3fde438a6664",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"id": "c7320d3a-5dba-4b16-8793-43f1da0504ab",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -601,7 +822,7 @@
 	],
 	"variable": [
 		{
-			"id": "375e8e2d-7eb9-4d59-8320-1222de7ddd74",
+			"id": "47c2ef5f-7e59-48b1-a53a-e130b652ac81",
 			"key": "baseUrl",
 			"value": "https://db3a2b48-7a7d-4cd4-8c67-8f109a6b05f8.mock.pstmn.io",
 			"type": "string"
