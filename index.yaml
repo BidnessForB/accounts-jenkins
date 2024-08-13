@@ -1,12 +1,12 @@
 openapi: 3.0.3
 info:
-  title: Retail Accounts API about retail stuff
+  title: Retail Accounts API
   description: >-
     Endpoints for frontend implementations when it comes to the account space.
 
 
     Responses can be visualized to give a clearer picture on what responses
-    provide.
+    provide. This is the new stuff
 
 
     Make sure to select the respective Environment file when making calls for
@@ -33,15 +33,44 @@ info:
   x-linked-collection: 23889826-1cbee4f0-2ffb-49ce-86bd-bf68301e3cfa
   x-postman-apiid: b54fc4ab-0e68-4b79-8e7d-6c1caa54e7be
 servers:
-  - url: https://9f784161-3a85-417e-9073-f48d348570fd.mock.pstmn.io
+  - url: https://b2189b36-046f-49ea-8c39-613bdb0d4f1e.mock.pstmn.io
 paths:
-  /accounts/abc1234/statement/latest:
+  /accounts/{accountNumber}:
+    delete:
+      summary: Delete account
+      description: Delete an account
+      operationId: deleteAccount
+      responses:
+        '204':
+          description: 200 OK
+          content:
+            text/plain:
+              examples:
+                200 OK:
+                  value: ''
+    parameters:
+      - name: accountNumber
+        in: path
+        required: true
+        schema:
+          type: string
+          example: abc123
+        description: '(Required)'
+
+  /accounts/{accountNumber}/statement/latest:
     get:
       tags:
         - Statement
       summary: Latest
       description: Use the Statement/Latest to see the account and balance of your user.
       operationId: latest
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123ABC
       responses:
         '200':
           description: 200 OK
@@ -65,6 +94,7 @@ paths:
                     type: object
                     properties:
                       in:
+                        description: The thing
                         type: number
                         example: 929.15
                       out:
@@ -247,7 +277,7 @@ paths:
                           Time)
                         description: Altenwerth, Rath and Hammes
                         type: payment
-  /accounts/abc1234/statement/date:
+  /accounts/{accountNumber}/statement/date:
     get:
       tags:
         - Statement
@@ -258,7 +288,8 @@ paths:
       operationId: date
       parameters:
         - name: accountNumber
-          in: query
+          in: path
+          required: true
           schema:
             type: string
             example: 123ABC
@@ -650,11 +681,18 @@ paths:
                         bic: PYAUISI1
                         iban: AT780032406410040055
                     type: Investment Account
-  /accounts/abc1234/overview:
+  /accounts/{accountNumber}/overview:
     get:
       summary: Overview
       description: Overview
       operationId: overview
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 123ABC
       responses:
         '200':
           description: 200 OK

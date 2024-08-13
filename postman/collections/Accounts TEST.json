@@ -100,21 +100,8 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "from",
-									"value": "Wed Jan 11 2023 00:50:06 GMT-0600 (Central Standard Time)"
-								},
-								{
-									"key": "to",
-									"value": "Mon Oct 09 2023 11:06:39 GMT-0500 (Central Daylight Time)"
-								}
-							]
-						},
 						"url": {
-							"raw": "{{baseUrl}}/accounts/abc1234/statement/date?accountNumber=123ABC",
+							"raw": "{{baseUrl}}/accounts/abc1234/statement/date",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -127,7 +114,8 @@
 							"query": [
 								{
 									"key": "accountNumber",
-									"value": "123ABC"
+									"value": "123ABC",
+									"disabled": true
 								}
 							]
 						},
@@ -485,6 +473,86 @@
 					"body": "{\n  \"balance\": {\n    \"available\": 109.58,\n    \"present\": 265.53\n  },\n  \"details\": {\n    \"domestic\": {\n      \"account\": \"34183769\",\n      \"routing\": \"69437301\"\n    },\n    \"international\": {\n      \"bic\": \"AAQIMWT1\",\n      \"iban\": \"{AL10010054848GYQ8536W4967Q3R}\"\n    }\n  },\n  \"interestRate\": 0.01,\n  \"lastStatementDate\": \"Tue Oct 10 2023 00:41:55 GMT-0500 (Central Daylight Time)\",\n  \"type\": \"Savings Account\"\n}"
 				}
 			]
+		},
+		{
+			"name": "Delete account",
+			"id": "c7320d3a-5dba-4b16-8793-43f1da0504ab",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/accounts/:accountNumber",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"accounts",
+						":accountNumber"
+					],
+					"variable": [
+						{
+							"key": "accountNumber",
+							"value": "abc123",
+							"description": "(Required) (Required)"
+						}
+					]
+				},
+				"description": "Delete an account"
+			},
+			"response": [
+				{
+					"id": "fffedf33-10cb-4318-a529-e908e9fdb2ef",
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "x-api-key",
+								"value": "<API Key>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/accounts/:accountNumber",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								":accountNumber"
+							],
+							"variable": [
+								{
+									"key": "accountNumber"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"value\": \"\"\n}"
+				}
+			]
 		}
 	],
 	"auth": {
@@ -511,7 +579,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "8d6605ef-ee7c-4487-b0be-623c52c5e103",
+				"id": "cd787e98-03e6-413e-81ff-442a8a4dd78c",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -522,7 +590,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "8a2f9485-1c40-48c5-8f77-80813bd30f76",
+				"id": "82f1048f-a39f-4c1d-a5a6-8ed67b36277e",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -533,9 +601,10 @@
 	],
 	"variable": [
 		{
-			"id": "78fe4a15-f3c3-4c25-90cb-f41587555aa8",
+			"id": "5f49b4f4-40b3-4ff3-95ed-4065d321ebe2",
 			"key": "baseUrl",
-			"value": "https://253782b5-0ea0-4ccd-a7a3-6c5d644c76b7.mock.pstmn.io"
+			"value": "https://b2189b36-046f-49ea-8c39-613bdb0d4f1e.mock.pstmn.io",
+			"type": "string"
 		}
 	]
 }
