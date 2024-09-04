@@ -18,85 +18,16 @@
 							"script": {
 								"id": "4e477bf4-338c-410c-b31d-139e41d16bfe",
 								"exec": [
-									"pm.test(\"Response time is less than 1000ms\", function () {",
-									"  pm.expect(pm.response.responseTime).to.be.below(1000);",
-									"});",
-									"",
-									"let jsonResponse = pm.response.json();",
-									"",
-									"pm.test(\"Response should be a parsable JSON\", function() {",
-									"    pm.expect(jsonResponse).to.be.ok;",
-									"});",
-									"",
-									"pm.test(\"Response body should be an object\", function() {",
-									"    pm.expect(jsonResponse).to.be.an('object');",
-									"});",
-									"",
-									"",
-									"",
-									"var schema = {",
-									"  \"type\": \"object\",",
-									"  \"properties\": {",
-									"    \"period\": {",
-									"      \"type\": \"object\",",
-									"      \"properties\": {",
-									"        \"from\": {",
-									"          \"type\": \"string\"",
-									"        },",
-									"        \"to\": {",
-									"          \"type\": \"string\"",
-									"        }",
-									"      },",
-									"      \"required\": [",
-									"        \"from\",",
-									"        \"to\"",
-									"      ]",
-									"    },",
-									"    \"balance\": {",
-									"      \"type\": \"object\",",
-									"      \"properties\": {",
-									"        \"opening\": {",
-									"          \"type\": \"number\"",
-									"        },",
-									"        \"closing\": {",
-									"          \"type\": \"number\"",
-									"        }",
-									"      },",
-									"      \"required\": [",
-									"        \"opening\",",
-									"        \"closing\"",
-									"      ]",
-									"    },",
-									"    \"money\": {",
-									"      \"type\": \"object\",",
-									"      \"properties\": {",
-									"        \"in\": {",
-									"          \"type\": \"number\"",
-									"        },",
-									"        \"out\": {",
-									"          \"type\": \"number\"",
-									"        }",
-									"      },",
-									"      \"required\": [",
-									"        \"in\",",
-									"        \"out\"",
-									"      ]",
-									"    }",
-									"  },",
-									"  \"required\": [",
-									"    \"period\",",
-									"    \"balance\",",
-									"    \"money\"",
-									"  ]",
-									"}",
-									"",
-									"/*pm.test(\"Response body should be in the correct format\", function() {",
-									"  pm.response.to.have.jsonSchema (schema);",
-									"});*/",
+									"const accountsRegression = pm.require('@brkc-personal/accounts-regression');",
+									"accountsRegression(1000);",
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {
+									"@brkc-personal/accounts-regression": {
+										"id": "019103b6-f9fd-73b9-b7b0-a6389954c2b4"
+									}
+								}
 							}
 						}
 					],
@@ -178,8 +109,8 @@
 							"script": {
 								"id": "a48c8954-c096-4a70-855c-237f2ff1be39",
 								"exec": [
-									"pm.test(\"Response time is less than 1000ms\", function () {",
-									"  pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(300);",
 									"});",
 									"",
 									"let jsonResponse = pm.response.json();",
@@ -679,6 +610,101 @@
 					"body": "{\n  \"balance\": {\n    \"available\": 109.58,\n    \"present\": 265.53\n  },\n  \"details\": {\n    \"domestic\": {\n      \"account\": \"34183769\",\n      \"routing\": \"69437301\"\n    },\n    \"international\": {\n      \"bic\": \"AAQIMWT1\",\n      \"iban\": \"{AL10010054848GYQ8536W4967Q3R}\"\n    }\n  },\n  \"interestRate\": 0.01,\n  \"lastStatementDate\": \"Tue Oct 10 2023 00:41:55 GMT-0500 (Central Daylight Time)\",\n  \"type\": \"Savings Account\"\n}"
 				}
 			]
+		},
+		{
+			"name": "Delete account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f022aa1e-6cd3-4695-9470-3fde438a6664",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "c7320d3a-5dba-4b16-8793-43f1da0504ab",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/accounts/:accountNumber",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"accounts",
+						":accountNumber"
+					],
+					"variable": [
+						{
+							"key": "accountNumber",
+							"value": "abc123",
+							"description": "(Required) (Required)"
+						}
+					]
+				},
+				"description": "Delete an account"
+			},
+			"response": [
+				{
+					"id": "fffedf33-10cb-4318-a529-e908e9fdb2ef",
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "x-api-key",
+								"value": "<API Key>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/accounts/:accountNumber",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								":accountNumber"
+							],
+							"variable": [
+								{
+									"key": "accountNumber"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"value\": \"\"\n}"
+				}
+			]
 		}
 	],
 	"auth": {
@@ -705,7 +731,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "3007439a-c573-48d4-b2d2-7dc7ad371d76",
+				"id": "a8c1b929-aa53-4d87-a960-59e3cae92bbc",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -716,7 +742,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "aa148edb-2b1b-428e-9459-c401ace44d56",
+				"id": "4746051a-2335-4f6b-a393-3883106fad9f",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -727,9 +753,9 @@
 	],
 	"variable": [
 		{
-			"id": "511d9a1b-2688-4c3a-bab0-f5fd1a514bb3",
+			"id": "fa1082da-dc5b-4b54-8a16-5797abaaca74",
 			"key": "baseUrl",
-			"value": "https://db3a2b48-7a7d-4cd4-8c67-8f109a6b05f8.mock.pstmn.io",
+			"value": "https://b4153a79-30fb-403d-84b8-f8b8df326222.mock.pstmn.io",
 			"type": "string"
 		}
 	]
