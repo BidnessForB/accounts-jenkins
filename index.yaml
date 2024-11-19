@@ -33,7 +33,7 @@ info:
   x-linked-collection: 23889826-1cbee4f0-2ffb-49ce-86bd-bf68301e3cfa
   x-postman-apiid: b54fc4ab-0e68-4b79-8e7d-6c1caa54e7be
 servers:
-  - url: https://b4153a79-30fb-403d-84b8-f8b8df326222.mock.pstmn.io
+  - url: https://65dbb390-a892-4b83-a246-5d655f2fb239.mock.pstmn.io
 paths:
   /accounts/{accountNumber}:
     delete:
