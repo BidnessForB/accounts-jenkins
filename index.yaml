@@ -35,27 +35,6 @@ info:
 servers:
   - url: https://65dbb390-a892-4b83-a246-5d655f2fb239.mock.pstmn.io
 paths:
-  /accounts/{accountNumber}:
-    delete:
-      summary: Delete account
-      description: Delete an account
-      operationId: deleteAccount
-      responses:
-        '204':
-          description: 200 OK
-          content:
-            text/plain:
-              examples:
-                200 OK:
-                  value: ''
-    parameters:
-      - name: accountNumber
-        in: path
-        required: true
-        schema:
-          type: string
-          example: abc123
-        description: '(Required)'
 
   /accounts/{accountNumber}/statement/latest:
     get:
