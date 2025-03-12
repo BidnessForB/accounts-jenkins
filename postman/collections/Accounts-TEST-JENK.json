@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "47553cb4-5840-4ae0-b795-c734603d3fb9",
-		"name": "Accounts TEST",
-		"description": "Endpoints for frontend implementations when it comes to the account space.\n\nResponses can be visualized to give a clearer picture on what responses provide. This is the new stuff\n\nMake sure to select the respective Environment file when making calls for the Collection  \n\n<img src=\"https://i.imgur.com/ymcwlzB.gif\" alt=\"Imgur\">\n\nReference image example here:  \n\n<img src=\"https://i.imgur.com/WbEHxDz.jpg\" alt=\"Imgur\">\n\n  \nand example of Date  \n\n<img src=\"https://i.imgur.com/zQq3VNF.jpg\" alt=\"Imgur\">",
+		"_postman_id": "1f3742a0-0d2b-4216-8f2e-9906dab59a1e",
+		"name": "Accounts-TEST-JENK",
+		"description": "Endpoints for frontend implementations when it comes to the account space.\nAdd some new documentation \nResponses can be visualized to give a clearer picture on what responses provide. \nThis is the new stuff new documentation about stuff\nMake sure to select the respective Environment file when making calls for the Collection  \n\n<img src=\"https://i.imgur.com/ymcwlzB.gif\" alt=\"Imgur\">\n\nReference image example here:  \n\n<img src=\"https://i.imgur.com/WbEHxDz.jpg\" alt=\"Imgur\">\n\n  \nand example of Date  \n\n<img src=\"https://i.imgur.com/zQq3VNF.jpg\" alt=\"Imgur\">",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "34829850-47553cb4-5840-4ae0-b795-c734603d3fb9"
+		"_uid": "34829850-1f3742a0-0d2b-4216-8f2e-9906dab59a1e"
 	},
 	"item": [
 		{
@@ -12,7 +12,7 @@
 			"item": [
 				{
 					"name": "Latest",
-					"id": "38a89ffc-0dec-46b3-b105-54fa60bb1058",
+					"id": "bf8d4071-2f4a-4a06-99bb-3518768c4468",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -47,7 +47,7 @@
 					},
 					"response": [
 						{
-							"id": "688af54d-ad0b-446d-a1b2-b6575a196b53",
+							"id": "77998cfc-7b0e-45ad-b081-8d6be1c11352",
 							"name": "200 OK",
 							"originalRequest": {
 								"method": "GET",
@@ -55,11 +55,6 @@
 									{
 										"key": "Accept",
 										"value": "application/json"
-									},
-									{
-										"description": "Added as a part of security scheme: apikey",
-										"key": "x-api-key",
-										"value": "<API Key>"
 									}
 								],
 								"url": {
@@ -96,7 +91,7 @@
 				},
 				{
 					"name": "Date",
-					"id": "c509f78e-1b9e-49c3-8e02-aa321283c3d3",
+					"id": "a1291492-4cbc-4457-9348-4b5115201d06",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -148,7 +143,7 @@
 					},
 					"response": [
 						{
-							"id": "d2516868-f3dd-45dd-9285-5c0302be584a",
+							"id": "06d584d1-23fe-4443-ad15-6355b0f84794",
 							"name": "200 OK",
 							"originalRequest": {
 								"method": "GET",
@@ -160,11 +155,6 @@
 									{
 										"key": "Accept",
 										"value": "application/json"
-									},
-									{
-										"description": "Added as a part of security scheme: apikey",
-										"key": "x-api-key",
-										"value": "<API Key>"
 									}
 								],
 								"body": {
@@ -330,11 +320,11 @@
 					]
 				}
 			],
-			"id": "8677b597-9f74-467f-9ab3-ede5a2578103"
+			"id": "1b85e355-a185-4a64-96ef-69dfbc274fa6"
 		},
 		{
 			"name": "Create",
-			"id": "8f703e7a-af06-43b2-b99f-eced5b930929",
+			"id": "ec3a2072-70ff-4204-a169-de50293ab8d9",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -374,7 +364,7 @@
 			},
 			"response": [
 				{
-					"id": "49f833a7-3ed6-4fd3-8438-b2879af8c1db",
+					"id": "2a3fad82-16ae-47c9-a7ca-9292d6df1d5e",
 					"name": "200 OK",
 					"originalRequest": {
 						"method": "POST",
@@ -386,11 +376,6 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
-							},
-							{
-								"description": "Added as a part of security scheme: apikey",
-								"key": "x-api-key",
-								"value": "<API Key>"
 							}
 						],
 						"body": {
@@ -430,7 +415,7 @@
 		},
 		{
 			"name": "Overview",
-			"id": "a46d7063-71f4-4219-bf16-21c9ae7b9c32",
+			"id": "14418dd5-d646-43e0-9ca4-51c2917060b1",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -464,7 +449,7 @@
 			},
 			"response": [
 				{
-					"id": "1cc652e2-9e51-4c6f-b67c-8683df1b61da",
+					"id": "943a4934-cd9d-4390-82a6-ba81e582faf2",
 					"name": "200 OK",
 					"originalRequest": {
 						"method": "GET",
@@ -472,11 +457,6 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
-							},
-							{
-								"description": "Added as a part of security scheme: apikey",
-								"key": "x-api-key",
-								"value": "<API Key>"
 							}
 						],
 						"url": {
@@ -511,55 +491,11 @@
 			]
 		}
 	],
-	"auth": {
-		"type": "apikey",
-		"apikey": [
-			{
-				"key": "key",
-				"value": "x-api-key",
-				"type": "string"
-			},
-			{
-				"key": "value",
-				"value": "{{apiKey}}",
-				"type": "string"
-			},
-			{
-				"key": "in",
-				"value": "header",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"id": "21129955-de50-4e63-8c23-53a97e4459f1",
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"id": "b3f692c2-28a2-4b8b-8920-5548bc06d106",
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
 	"variable": [
 		{
-			"id": "4d4b0b1b-b07a-4cb2-b029-3eac5daf006f",
+			"id": "99c7486c-c9c1-4db2-b75a-8bf772d8dfcc",
 			"key": "baseUrl",
-			"value": "https://a81cec80-f9bc-492b-b1e2-4e7723ca22d5.mock.pstmn.io"
+			"value": "https://43a2a783-4b3a-47f9-ba4d-248f534b59bf.mock.pstmn.io"
 		}
 	]
 }
