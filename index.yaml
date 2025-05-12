@@ -37,7 +37,7 @@ servers:
 paths:
   /accounts/{accountNumber}:
     delete:
-      summary: Delete account
+      summary: Delete an account
       description: Delete an account
       operationId: deleteAccount
       responses:
