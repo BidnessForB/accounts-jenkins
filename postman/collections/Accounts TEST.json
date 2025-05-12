@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1f3742a0-0d2b-4216-8f2e-9906dab59a1e",
-		"name": "Accounts-TEST-JENK",
-		"description": "Endpoints for frontend implementations when it comes to the account space.\nAdd some new documentation \nResponses can be visualized to give a clearer picture on what responses provide. \nThis is the new stuff new documentation about stuff\nMake sure to select the respective Environment file when making calls for the Collection  \n\n<img src=\"https://i.imgur.com/ymcwlzB.gif\" alt=\"Imgur\">\n\nReference image example here:  \n\n<img src=\"https://i.imgur.com/WbEHxDz.jpg\" alt=\"Imgur\">\n\n  \nand example of Date  \n\n<img src=\"https://i.imgur.com/zQq3VNF.jpg\" alt=\"Imgur\">",
+		"_postman_id": "1a7edc2e-b092-409b-a5da-57a1e56895e9",
+		"name": "Accounts TEST",
+		"description": "Endpoints for frontend implementations when it comes to the account space.\n\nResponses can be visualized to give a clearer picture on what responses provide.\n\nMake sure to select the respective Environment file when making calls for the Collection  \n\n<img src=\"https://i.imgur.com/ymcwlzB.gif\" alt=\"Imgur\">\n\nReference image example here:  \n\n<img src=\"https://i.imgur.com/WbEHxDz.jpg\" alt=\"Imgur\">\n\n  \nand example of Date  \n\n<img src=\"https://i.imgur.com/zQq3VNF.jpg\" alt=\"Imgur\">",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "34829850-1f3742a0-0d2b-4216-8f2e-9906dab59a1e"
+		"_uid": "34829850-1a7edc2e-b092-409b-a5da-57a1e56895e9"
 	},
 	"item": [
 		{
@@ -12,7 +12,26 @@
 			"item": [
 				{
 					"name": "Latest",
-					"id": "bf8d4071-2f4a-4a06-99bb-3518768c4468",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f704bff1-ee71-414f-993f-8eea54a1da68",
+								"exec": [
+									"const accountsRegression = pm.require('@brkc-personal/accounts-regression');",
+									"accountsRegression(1000);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {
+									"@brkc-personal/accounts-regression": {
+										"id": "019103b6-f9fd-73b9-b7b0-a6389954c2b4"
+									}
+								}
+							}
+						}
+					],
+					"id": "cc8af1b1-46cd-4e11-b906-9c0407d775d7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -25,29 +44,22 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/accounts/:accountNumber/statement/latest",
+							"raw": "{{baseUrl}}/accounts/abc1234/statement/latest",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"accounts",
-								":accountNumber",
+								"abc1234",
 								"statement",
 								"latest"
-							],
-							"variable": [
-								{
-									"key": "accountNumber",
-									"value": "123ABC",
-									"description": "(Required) "
-								}
 							]
 						},
 						"description": "Use the Statement/Latest to see the account and balance of your user."
 					},
 					"response": [
 						{
-							"id": "77998cfc-7b0e-45ad-b081-8d6be1c11352",
+							"id": "0d6f4e88-f3cc-4fb6-a805-4d6effaf31e6",
 							"name": "200 OK",
 							"originalRequest": {
 								"method": "GET",
@@ -55,29 +67,30 @@
 									{
 										"key": "Accept",
 										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "x-api-key",
+										"value": "<API Key>"
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountNumber/statement/latest",
+									"raw": "{{baseUrl}}/accounts/abc1234/statement/latest",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"accounts",
-										":accountNumber",
+										"abc1234",
 										"statement",
 										"latest"
-									],
-									"variable": [
-										{
-											"key": "accountNumber"
-										}
 									]
 								}
 							},
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -91,7 +104,95 @@
 				},
 				{
 					"name": "Date",
-					"id": "a1291492-4cbc-4457-9348-4b5115201d06",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "06d7e521-d7d0-4f0a-b5d2-c9c07ebd16f3",
+								"exec": [
+									"pm.test(\"Response time is less than 300ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(300);",
+									"});",
+									"",
+									"let jsonResponse = pm.response.json();",
+									"",
+									"pm.test(\"Response should be a parsable JSON\", function() {",
+									"    pm.expect(jsonResponse).to.be.ok;",
+									"});",
+									"",
+									"pm.test(\"Response body should be an object\", function() {",
+									"    pm.expect(jsonResponse).to.be.an('object');",
+									"});",
+									"",
+									"",
+									"",
+									"var schema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"period\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"from\": {",
+									"          \"type\": \"string\"",
+									"        },",
+									"        \"to\": {",
+									"          \"type\": \"string\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"from\",",
+									"        \"to\"",
+									"      ]",
+									"    },",
+									"    \"balance\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"opening\": {",
+									"          \"type\": \"number\"",
+									"        },",
+									"        \"closing\": {",
+									"          \"type\": \"number\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"opening\",",
+									"        \"closing\"",
+									"      ]",
+									"    },",
+									"    \"money\": {",
+									"      \"type\": \"object\",",
+									"      \"properties\": {",
+									"        \"in\": {",
+									"          \"type\": \"number\"",
+									"        },",
+									"        \"out\": {",
+									"          \"type\": \"number\"",
+									"        }",
+									"      },",
+									"      \"required\": [",
+									"        \"in\",",
+									"        \"out\"",
+									"      ]",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"period\",",
+									"    \"balance\",",
+									"    \"money\"",
+									"  ]",
+									"}",
+									"",
+									"/*pm.test(\"Response body should be in the correct format\", function() {",
+									"  pm.response.to.have.jsonSchema (schema);",
+									"});*/",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "85f503f6-042b-463d-9873-a685c5ddd516",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -107,35 +208,22 @@
 								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "from",
-									"value": "Wed Jan 11 2023 00:50:06 GMT-0600 (Central Standard Time)"
-								},
-								{
-									"key": "to",
-									"value": "Mon Oct 09 2023 11:06:39 GMT-0500 (Central Daylight Time)"
-								}
-							]
-						},
 						"url": {
-							"raw": "{{baseUrl}}/accounts/:accountNumber/statement/date",
+							"raw": "{{baseUrl}}/accounts/abc1234/statement/date",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"accounts",
-								":accountNumber",
+								"abc1234",
 								"statement",
 								"date"
 							],
-							"variable": [
+							"query": [
 								{
 									"key": "accountNumber",
 									"value": "123ABC",
-									"description": "(Required) "
+									"disabled": true
 								}
 							]
 						},
@@ -143,7 +231,7 @@
 					},
 					"response": [
 						{
-							"id": "06d584d1-23fe-4443-ad15-6355b0f84794",
+							"id": "9f987aa7-0e30-4649-95ff-2d7b7d5ac8d3",
 							"name": "200 OK",
 							"originalRequest": {
 								"method": "GET",
@@ -155,6 +243,11 @@
 									{
 										"key": "Accept",
 										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "x-api-key",
+										"value": "<API Key>"
 									}
 								],
 								"body": {
@@ -171,19 +264,20 @@
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/accounts/:accountNumber/statement/date",
+									"raw": "{{baseUrl}}/accounts/abc1234/statement/date?accountNumber=123ABC",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"accounts",
-										":accountNumber",
+										"abc1234",
 										"statement",
 										"date"
 									],
-									"variable": [
+									"query": [
 										{
-											"key": "accountNumber"
+											"key": "accountNumber",
+											"value": "123ABC"
 										}
 									]
 								}
@@ -191,6 +285,7 @@
 							"status": "OK",
 							"code": 200,
 							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "html",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -320,11 +415,26 @@
 					]
 				}
 			],
-			"id": "1b85e355-a185-4a64-96ef-69dfbc274fa6"
+			"id": "0aeb9472-201b-408b-abe1-dd14c757e56d"
 		},
 		{
 			"name": "Create",
-			"id": "ec3a2072-70ff-4204-a169-de50293ab8d9",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e299537c-f95a-4381-9301-78f1853ea000",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "2d66eb04-21cf-4685-a2e9-0de98946b383",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -364,7 +474,7 @@
 			},
 			"response": [
 				{
-					"id": "2a3fad82-16ae-47c9-a7ca-9292d6df1d5e",
+					"id": "3e90b4b0-86df-4959-a92d-9d6eb71ebcb1",
 					"name": "200 OK",
 					"originalRequest": {
 						"method": "POST",
@@ -376,6 +486,11 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "x-api-key",
+								"value": "<API Key>"
 							}
 						],
 						"body": {
@@ -402,6 +517,7 @@
 					"status": "Created",
 					"code": 201,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -415,7 +531,22 @@
 		},
 		{
 			"name": "Overview",
-			"id": "14418dd5-d646-43e0-9ca4-51c2917060b1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d7c819f-3f28-40c1-8429-993edfbbdf76",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "1662a59c-3659-42ee-87d9-a1f873ec548a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -428,28 +559,21 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/accounts/:accountNumber/overview",
+					"raw": "{{baseUrl}}/accounts/abc1234/overview",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"accounts",
-						":accountNumber",
+						"abc1234",
 						"overview"
-					],
-					"variable": [
-						{
-							"key": "accountNumber",
-							"value": "123ABC",
-							"description": "(Required) "
-						}
 					]
 				},
 				"description": "Overview"
 			},
 			"response": [
 				{
-					"id": "943a4934-cd9d-4390-82a6-ba81e582faf2",
+					"id": "90b14e2e-07b2-4415-b9bc-453430398d03",
 					"name": "200 OK",
 					"originalRequest": {
 						"method": "GET",
@@ -457,28 +581,29 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
+							},
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "x-api-key",
+								"value": "<API Key>"
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/accounts/:accountNumber/overview",
+							"raw": "{{baseUrl}}/accounts/abc1234/overview",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"accounts",
-								":accountNumber",
+								"abc1234",
 								"overview"
-							],
-							"variable": [
-								{
-									"key": "accountNumber"
-								}
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "html",
 					"header": [
 						{
 							"key": "Content-Type",
@@ -489,13 +614,129 @@
 					"body": "{\n  \"balance\": {\n    \"available\": 109.58,\n    \"present\": 265.53\n  },\n  \"details\": {\n    \"domestic\": {\n      \"account\": \"34183769\",\n      \"routing\": \"69437301\"\n    },\n    \"international\": {\n      \"bic\": \"AAQIMWT1\",\n      \"iban\": \"{AL10010054848GYQ8536W4967Q3R}\"\n    }\n  },\n  \"interestRate\": 0.01,\n  \"lastStatementDate\": \"Tue Oct 10 2023 00:41:55 GMT-0500 (Central Daylight Time)\",\n  \"type\": \"Savings Account\"\n}"
 				}
 			]
+		},
+		{
+			"name": "Delete account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c6172fb7-3ccc-4350-8ab6-4b279e716691",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "6fabd39f-3714-4a7c-ae2f-862261e50e7b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/accounts/:accountNumber",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"accounts",
+						":accountNumber"
+					],
+					"variable": [
+						{
+							"key": "accountNumber",
+							"value": "abc123",
+							"description": "(Required) (Required)"
+						}
+					]
+				},
+				"description": "Delete an account"
+			},
+			"response": [
+				{
+					"id": "a82e3d25-d58e-49e6-b087-0d7b8527037d",
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"description": "Added as a part of security scheme: apikey",
+								"key": "x-api-key",
+								"value": "<API Key>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/accounts/:accountNumber",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"accounts",
+								":accountNumber"
+							],
+							"variable": [
+								{
+									"key": "accountNumber"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"_postman_previewtype": "html",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"value\": \"\"\n}"
+				}
+			]
 		}
 	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "x-api-key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{apiKey}}",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "c239a77a-7f1b-413e-a9a5-5bfafcc64786",
+				"id": "cf93306c-a3a8-4900-8538-b81bc4e83717",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -506,7 +747,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a30ede9e-217e-4e08-8c8b-a5bf849078e4",
+				"id": "264cb93c-d19c-4a2b-8a88-0861c0b77d3b",
 				"type": "text/javascript",
 				"packages": {},
 				"exec": [
@@ -517,9 +758,10 @@
 	],
 	"variable": [
 		{
-			"id": "7df55777-8fe0-412d-a6c6-d5d7af52cfe6",
+			"id": "e62a60e3-10bb-436c-8514-ec94420f2dd7",
 			"key": "baseUrl",
-			"value": "https://1bd24a52-729f-479d-8f79-7355269a8215.mock.pstmn.io"
+			"value": "https://1bd24a52-729f-479d-8f79-7355269a8215.mock.pstmn.io",
+			"type": "string"
 		}
 	]
 }

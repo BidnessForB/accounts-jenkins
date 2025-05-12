@@ -4,12 +4,10 @@ info:
   description: >-
     Endpoints for frontend implementations when it comes to the account space.
 
-    Add some new documentation 
 
     Responses can be visualized to give a clearer picture on what responses
-    provide. 
-    
-    This is the new stuff new documentation about stuff
+    provide. This is the new stuff
+
 
     Make sure to select the respective Environment file when making calls for
     the Collection  
@@ -35,8 +33,29 @@ info:
   x-linked-collection: 23889826-1cbee4f0-2ffb-49ce-86bd-bf68301e3cfa
   x-postman-apiid: b54fc4ab-0e68-4b79-8e7d-6c1caa54e7be
 servers:
-  - url: https://43a2a783-4b3a-47f9-ba4d-248f534b59bf.mock.pstmn.io
+  - url: https://1bd24a52-729f-479d-8f79-7355269a8215.mock.pstmn.io
 paths:
+  /accounts/{accountNumber}:
+    delete:
+      summary: Delete account
+      description: Delete an account
+      operationId: deleteAccount
+      responses:
+        '204':
+          description: 200 OK
+          content:
+            text/plain:
+              examples:
+                200 OK:
+                  value: ''
+    parameters:
+      - name: accountNumber
+        in: path
+        required: true
+        schema:
+          type: string
+          example: abc123
+        description: '(Required)'
 
   /accounts/{accountNumber}/statement/latest:
     get:
@@ -71,10 +90,8 @@ paths:
                       opening:
                         type: number
                         example: 335.77
-                        description: This is the opening amount
                   money:
                     type: object
-                    description: the thng
                     properties:
                       in:
                         description: The thing
@@ -83,11 +100,9 @@ paths:
                       out:
                         type: number
                         example: 286.06
-                        description:  this is the desc
                   period:
                     type: string
                     example: latest
-                    description: This is the period parameter
                   transactions:
                     type: array
                     items:
@@ -742,10 +757,6 @@ paths:
                     lastStatementDate: Tue Oct 10 2023 00:41:55 GMT-0500 (Central Daylight Time)
                     type: Savings Account
 components:
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      name: x-api-key
-      in: header
+  
 tags:
   - name: Statement
