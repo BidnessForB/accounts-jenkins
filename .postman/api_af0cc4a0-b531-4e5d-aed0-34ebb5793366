@@ -15,8 +15,6 @@ files[] = {"id":"34829850-1f3742a0-0d2b-4216-8f2e-9906dab59a1e","path":"Accounts
 [config.relations.collections.metaData]
 
 [config.relations.apiDefinition]
-files[] = {"path":"index.yaml","metaData":{}}
 
 [config.relations.apiDefinition.metaData]
 type = openapi:3
-rootFiles[] = index.yaml
